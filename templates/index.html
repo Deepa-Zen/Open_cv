@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next-Gen Cyberpunk AI Vision & Biometrics Command Center</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="brand-container">
+            <span class="brand-icon">⚡🦾👁️</span>
+            <div class="brand-text">
+                <h1 class="brand-title">KCE AI VISION & BIOMETRICS</h1>
+                <p class="brand-subtitle">Real-Time YOLOv8 & OpenCV Command Center</p>
+            </div>
+        </div>
+
+        <div class="header-badges">
+            <a href="/presentation" target="_blank" class="presentation-link-btn" title="Open Master Interactive Presentation Deck">
+                🖥️ Presentation Deck ↗
+            </a>
+            <div class="alert-badge" id="headerAlertBadge">
+                ⚠️ INTRUSION DETECTED IN ROI ZONE
+            </div>
+            <div class="status-badge">
+                <div class="status-dot"></div> AI ENGINE RUNNING
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="main-wrapper">
+        <!-- Left Column: Stream & Live Analytics -->
+        <div class="left-column">
+            <!-- Video Stage -->
+            <section class="card">
+                <div class="card-title">
+                    <span>📹 Live Tactical AI Video Feed</span>
+                    <span class="tag-item" id="totalCountBadge">0 Active Targets</span>
+                </div>
+                
+                <div class="video-viewport">
+                    <div class="overlay-tag">
+                        <div class="live-pulse"></div> LIVE AI TACTICAL STREAM
+                    </div>
+                    <div class="distance-badge" id="distanceBadge">
+                        📏 Dist: --
+                    </div>
+                    <img src="/video_feed" class="video-stream-img" alt="Live Tactical AI Feed">
+                    <div class="metrics-overlay" id="metricsOverlay">
+                        FPS: -- | Latency: -- ms
+                    </div>
+                </div>
+
+                <!-- Vital Signs HUD Cards Bar -->
+                <div class="vitals-grid">
+                    <div class="vital-card">
+                        <span class="vital-icon">💓</span>
+                        <div class="vital-info">
+                            <label>Heart Rate (rPPG)</label>
+                            <span class="vital-value" id="bpmVal">72 BPM</span>
+                        </div>
+                    </div>
+                    <div class="vital-card">
+                        <span class="vital-icon">😴</span>
+                        <div class="vital-info">
+                            <label>Drowsiness / EAR</label>
+                            <span class="vital-value" id="drowsinessVal">0% Alert</span>
+                        </div>
+                    </div>
+                    <div class="vital-card">
+                        <span class="vital-icon">🧍</span>
+                        <div class="vital-info">
+                            <label>Knee Angle & Posture</label>
+                            <span class="vital-value" id="kneeAngleVal">172° Standing</span>
+                        </div>
+                    </div>
+                    <div class="vital-card">
+                        <span class="vital-icon">🎯</span>
+                        <div class="vital-info">
+                            <label>Attentiveness</label>
+                            <span class="vital-value" id="attentiveVal">98%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-title" style="margin-top: 20px;">
+                    <span>🎭 Target Biometrics, Gesture & Clothing Color Feed</span>
+                </div>
+                <div class="tags-wrapper" id="tagsWrapper">
+                    <span class="tag-item" style="opacity: 0.6;">Scanning hands, legs, posture, face & dress colors...</span>
+                </div>
+            </section>
+
+            <!-- Real-Time Telemetry Graph Card -->
+            <section class="card">
+                <div class="card-title">
+                    <span>📈 Real-Time AI Telemetry & Target Density Graph</span>
+                    <button class="btn btn-emerald" style="padding: 4px 12px; font-size: 0.75rem;" onclick="exportCSV()">
+                        📥 Export CSV Audit
+                    </button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="telemetryChart"></canvas>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Column: Controls & Snapshots -->
+        <div class="right-column">
+            <!-- Control Panel -->
+            <section class="card">
+                <div class="card-title">
+                    <span>🎛️ Tactical AI Vision Control Suite</span>
+                </div>
+
+                <!-- 4 Sleek & Clean Vision Modes -->
+                <div class="mode-grid">
+                    <button class="mode-btn active" data-mode="1" onclick="selectMode(1)">
+                        <span>🦾</span> Pose & Body
+                    </button>
+                    <button class="mode-btn" data-mode="0" onclick="selectMode(0)">
+                        <span>🤖</span> AI Objects
+                    </button>
+                    <button class="mode-btn" data-mode="2" onclick="selectMode(2)">
+                        <span>👤</span> Face Analytics
+                    </button>
+                    <button class="mode-btn" data-mode="4" onclick="selectMode(4)">
+                        <span>🌌</span> Thermal & FX
+                    </button>
+                </div>
+
+                <!-- Sleek Security & Voice Toggles -->
+                <div class="toggle-row">
+                    <span>🛡️ Security Perimeter (ROI)</span>
+                    <label class="switch">
+                        <input type="checkbox" id="roiSwitch">
+                        <span class="slider-round"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <span>🔊 Voice Alert System</span>
+                    <label class="switch">
+                        <input type="checkbox" id="audioSwitch" checked>
+                        <span class="slider-round"></span>
+                    </label>
+                </div>
+
+                <!-- Confidence Slider -->
+                <div class="slider-container" style="margin-top: 16px;">
+                    <div class="slider-header">
+                        <span>Confidence Sensitivity</span>
+                        <strong id="confValue" style="color: var(--accent-blue);">50%</strong>
+                    </div>
+                    <input type="range" id="confSlider" min="10" max="95" value="50" class="range-slider" oninput="onConfidenceChange(this.value)">
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-row">
+                    <button class="btn btn-primary" onclick="captureSnapshot()">
+                        📸 Capture Snapshot
+                    </button>
+                    <button class="btn btn-secondary" onclick="toggleCameraStream()" id="toggleCamBtn">
+                        ⏸️ Pause Stream
+                    </button>
+                </div>
+            </section>
+
+            <!-- Saved Snapshots Gallery -->
+            <section class="card">
+                <div class="card-title">
+                    <span>🖼️ Captured AI Snapshots Gallery</span>
+                </div>
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Loaded dynamically -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Custom JS -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python & OpenCV - Master Interactive Presentation</title>
+    <!-- Modern Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- App Container -->
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand-title">
+                    <span class="icon">🐍👁️</span>
+                    <span class="title font-heading">Python & OpenCV</span>
+                </div>
+                <div class="brand-subtitle">Master Presentation Deck</div>
+            </div>
+
+            <div class="slide-list" id="slideList">
+                <div class="slide-item active" data-slide="1">
+                    <span class="num">01</span>
+                    <span class="title-text">Introduction to Python</span>
+                </div>
+                <div class="slide-item" data-slide="2">
+                    <span class="num">02</span>
+                    <span class="title-text">Features & Applications</span>
+                </div>
+                <div class="slide-item" data-slide="3">
+                    <span class="num">03</span>
+                    <span class="title-text">Introduction to OpenCV</span>
+                </div>
+                <div class="slide-item" data-slide="4">
+                    <span class="num">04</span>
+                    <span class="title-text">How OpenCV Works</span>
+                </div>
+                <div class="slide-item" data-slide="5">
+                    <span class="num">05</span>
+                    <span class="title-text">Core Image Processing</span>
+                </div>
+                <div class="slide-item" data-slide="6">
+                    <span class="num">06</span>
+                    <span class="title-text">Video Stream Processing</span>
+                </div>
+                <div class="slide-item" data-slide="7">
+                    <span class="num">07</span>
+                    <span class="title-text">Feature & Object Detection</span>
+                </div>
+                <div class="slide-item" data-slide="8">
+                    <span class="num">08</span>
+                    <span class="title-text">Deep Learning (cv2.dnn)</span>
+                </div>
+                <div class="slide-item" data-slide="9">
+                    <span class="num">09</span>
+                    <span class="title-text">Face Detection Live Demo</span>
+                </div>
+                <div class="slide-item" data-slide="10">
+                    <span class="num">10</span>
+                    <span class="title-text">Summary & Next Steps</span>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button class="btn btn-outline" id="toggleNotesBtn">📝 Speaker Notes</button>
+                <button class="btn btn-primary" id="fullscreenBtn">🖥️ Present Mode</button>
+            </div>
+        </aside>
+
+        <!-- Main Slide Viewport -->
+        <main class="main-content">
+            <header class="deck-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="sidebarToggle" title="Toggle Sidebar">☰</button>
+                    <span class="current-topic-badge" id="currentTopicBadge">Topic 1 of 10</span>
+                </div>
+                <div class="header-right">
+                    <div class="deck-controls">
+                        <button class="nav-btn" id="prevBtn" title="Previous Slide (Left Arrow)">← Prev</button>
+                        <span class="slide-counter"><strong id="currentSlideNum">1</strong> / 10</span>
+                        <button class="nav-btn" id="nextBtn" title="Next Slide (Right Arrow or Space)">Next →</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Presentation Stage -->
+            <div class="stage">
+                <!-- Slide 1 -->
+                <section class="slide-card active" id="slide-1">
+                    <div class="slide-badge">SLIDE 01</div>
+                    <h1 class="slide-title">Introduction to Python</h1>
+                    <p class="slide-subtitle">The foundation language powering modern AI, Machine Learning, and Computer Vision.</p>
+                    
+                    <div class="grid grid-2 mt-4">
+                        <div class="card glass">
+                            <h3><span class="highlight-blue">Why Python for Vision & AI?</span></h3>
+                            <ul class="feature-list">
+                                <li><strong>Readable & Concise:</strong> Simple, elegant syntax reduces development time by 5x compared to C++/Java.</li>
+                                <li><strong>Extensive Ecosystem:</strong> Seamless interoperability with NumPy, SciPy, PyTorch, TensorFlow, and OpenCV.</li>
+                                <li><strong>High Performance C-Bindings:</strong> Python code acts as high-level glue calling optimized C/C++ backend libraries.</li>
+                                <li><strong>Massive Community:</strong> Millions of open-source models, tutorials, and pre-trained weights.</li>
+                            </ul>
+                        </div>
+                        <div class="card glass code-card">
+                            <div class="code-header">
+                                <span>python_intro.py</span>
+                                <span class="tag">Python 3.13</span>
+                            </div>
+                            <pre><code><span class="code-keyword">import</span> cv2
+<span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+
+<span class="code-comment"># Creating a digital canvas in 3 lines</span>
+canvas = np.zeros((<span class="code-number">400</span>, <span class="code-number">600</span>, <span class="code-number">3</span>), dtype=<span class="code-string">"uint8"</span>)
+cv2.circle(canvas, (<span class="code-number">300</span>, <span class="code-number">200</span>), <span class="code-number">80</span>, (<span class="code-number">56</span>, <span class="code-number">189</span>, <span class="code-number">248</span>), -<span class="code-number">1</span>)
+print(f<span class="code-string">"Image matrix shape: {canvas.shape}"</span>)</code></pre>
+                            <div class="code-output">
+                                <span class="output-label">Output:</span> Image matrix shape: (400, 600, 3)
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 2 -->
+                <section class="slide-card" id="slide-2">
+                    <div class="slide-badge">SLIDE 02</div>
+                    <h1 class="slide-title">Features & Key Applications</h1>
+                    <p class="slide-subtitle">Where Python and Computer Vision intersect to reshape industries.</p>
+
+                    <div class="grid grid-3 mt-4">
+                        <div class="card glass hover-lift">
+                            <div class="card-icon">🚗</div>
+                            <h3>Autonomous Vehicles</h3>
+                            <p>Real-time lane detection, obstacle tracking, traffic sign recognition, and 3D point cloud processing.</p>
+                        </div>
+                        <div class="card glass hover-lift">
+                            <div class="card-icon">🏥</div>
+                            <h3>Medical Diagnostics</h3>
+                            <p>Automated MRI/CT scan segmentation, tumor detection, x-ray analysis, and cellular tracking.</p>
+                        </div>
+                        <div class="card glass hover-lift">
+                            <div class="card-icon">🛡️</div>
+                            <h3>Biometrics & Security</h3>
+                            <p>Facial recognition, emotion detection, surveillance anomaly detection, and anti-spoofing verification.</p>
+                        </div>
+                        <div class="card glass hover-lift">
+                            <div class="card-icon">🤖</div>
+                            <h3>Robotics & Automation</h3>
+                            <p>Visual SLAM (Simultaneous Localization and Mapping), robotic arm pick-and-place, and spatial awareness.</p>
+                        </div>
+                        <div class="card glass hover-lift">
+                            <div class="card-icon">🏭</div>
+                            <h3>Industrial Inspection</h3>
+                            <p>Defect detection on assembly lines, optical character recognition (OCR), and barcode scanning.</p>
+                        </div>
+                        <div class="card glass hover-lift">
+                            <div class="card-icon">🎮</div>
+                            <h3>AR / VR & Gaming</h3>
+                            <p>Hand gesture tracking, posture analysis, facial landmark mesh overlay, and virtual background removal.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 3 -->
+                <section class="slide-card" id="slide-3">
+                    <div class="slide-badge">SLIDE 03</div>
+                    <h1 class="slide-title">Introduction to OpenCV</h1>
+                    <p class="slide-subtitle">Open Source Computer Vision Library — The global standard for real-time vision.</p>
+
+                    <div class="grid grid-2 mt-4">
+                        <div class="card glass">
+                            <h3><span class="highlight-emerald">Key Capabilities & Specs</span></h3>
+                            <div class="stat-grid">
+                                <div class="stat-box">
+                                    <span class="stat-num">2500+</span>
+                                    <span class="stat-label">Optimized Algorithms</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-num">20+</span>
+                                    <span class="stat-label">Years of Development</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-num">C++ / Py</span>
+                                    <span class="stat-label">Multi-Language API</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-num">Real-Time</span>
+                                    <span class="stat-label">CUDA & SIMD Acceleration</span>
+                                </div>
+                            </div>
+                            <ul class="feature-list mt-3">
+                                <li>Created by Intel in 1999, now maintained by OpenCV.org foundation.</li>
+                                <li>Native hardware acceleration for Intel IPP, OpenCL, and NVIDIA CUDA.</li>
+                                <li>Seamless integration with PyTorch, TensorFlow, and ONNX runtime.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card glass visual-card">
+                            <div class="architecture-diagram">
+                                <div class="arch-box core">OpenCV Core Module (cv2)</div>
+                                <div class="arch-arrow">↓</div>
+                                <div class="arch-row">
+                                    <div class="arch-subbox">imgproc</div>
+                                    <div class="arch-subbox">highgui</div>
+                                    <div class="arch-subbox">video</div>
+                                    <div class="arch-subbox">dnn</div>
+                                </div>
+                                <div class="arch-arrow">↓</div>
+                                <div class="arch-box numpy">NumPy N-Dimensional Arrays (NDArray)</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 4 -->
+                <section class="slide-card" id="slide-4">
+                    <div class="slide-badge">SLIDE 04</div>
+                    <h1 class="slide-title">How OpenCV Works: Image Representation</h1>
+                    <p class="slide-subtitle">Images are multi-dimensional numerical matrices stored in memory.</p>
+
+                    <div class="grid grid-2 mt-4">
+                        <div class="card glass">
+                            <h3><span class="highlight-purple">The BGR Matrix Paradigm</span></h3>
+                            <p>Unlike standard web RGB order, OpenCV reads color images in <strong>BGR (Blue, Green, Red)</strong> channel order by default!</p>
+                            
+                            <div class="matrix-info-box mt-3">
+                                <h4>Matrix Dimension Structure:</h4>
+                                <code>img.shape = (Height, Width, Channels)</code>
+                                <ul>
+                                    <li><strong>Height:</strong> Number of pixel rows</li>
+                                    <li><strong>Width:</strong> Number of pixel columns</li>
+                                    <li><strong>Channels:</strong> 3 for BGR/RGB, 1 for Grayscale</li>
+                                    <li><strong>Data Type:</strong> <code>np.uint8</code> (values 0 to 255)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card glass demo-box">
+                            <h3>Interactive Pixel Inspector</h3>
+                            <p>Hover over pixels to inspect BGR intensity matrices:</p>
+                            <div class="pixel-grid" id="pixelGrid">
+                                <!-- Generated via JS -->
+                            </div>
+                            <div class="pixel-readout" id="pixelReadout">
+                                Selected Pixel: <span id="pixelCoord">(x: 0, y: 0)</span> | BGR: <span id="pixelBGR">[0, 0, 0]</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 5 -->
+                <section class="slide-card" id="slide-5">
+                    <div class="slide-badge">SLIDE 05</div>
+                    <h1 class="slide-title">Core Image Processing Pipeline</h1>
+                    <p class="slide-subtitle">Fundamental transformations for filtering, enhancement, and feature extraction.</p>
+
+                    <div class="pipeline-flow">
+                        <div class="flow-step">
+                            <span class="step-num">1</span>
+                            <h4>Read & Convert</h4>
+                            <code>cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</code>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <span class="step-num">2</span>
+                            <h4>Gaussian Blur</h4>
+                            <code>cv2.GaussianBlur(gray, (5,5), 0)</code>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <span class="step-num">3</span>
+                            <h4>Canny Edge</h4>
+                            <code>cv2.Canny(blur, 100, 200)</code>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <span class="step-num">4</span>
+                            <h4>Find Contours</h4>
+                            <code>cv2.findContours(...)</code>
+                        </div>
+                    </div>
+
+                    <div class="card glass code-card mt-4">
+                        <div class="code-header">
+                            <span>edge_pipeline.py</span>
+                            <span class="tag">OpenCV 4.14</span>
+                        </div>
+                        <pre><code><span class="code-keyword">import</span> cv2
+
+<span class="code-comment"># 1. Load Input Image</span>
+img = cv2.imread(<span class="code-string">"input.jpg"</span>)
+
+<span class="code-comment"># 2. Convert BGR to Grayscale for simpler intensity analysis</span>
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+<span class="code-comment"># 3. Apply Gaussian Smoothing to remove high-frequency noise</span>
+blurred = cv2.GaussianBlur(gray, (<span class="code-number">5</span>, <span class="code-number">5</span>), <span class="code-number">0</span>)
+
+<span class="code-comment"># 4. Canny Edge Detection with Dual-Thresholding</span>
+edges = cv2.Canny(blurred, threshold1=<span class="code-number">50</span>, threshold2=<span class="code-number">150</span>)
+
+<span class="code-comment"># 5. Display result</span>
+cv2.imshow(<span class="code-string">"Detected Edges"</span>, edges)</code></pre>
+                    </div>
+                </section>
+
+                <!-- Slide 6 -->
+                <section class="slide-card" id="slide-6">
+                    <div class="slide-badge">SLIDE 06</div>
+                    <h1 class="slide-title">Video Stream Processing</h1>
+                    <p class="slide-subtitle">Handling real-time camera feeds and video files efficiently.</p>
+
+                    <div class="grid grid-2 mt-4">
+                        <div class="card glass">
+                            <h3><span class="highlight-amber">Real-Time Frame Loop</span></h3>
+                            <p>Video is processed frame-by-frame inside a continuous execution loop until a user escape signal is triggered.</p>
+
+                            <ul class="feature-list mt-3">
+                                <li><code>cv2.VideoCapture(0)</code> connects to default system camera.</li>
+                                <li><code>source.read()</code> returns boolean status and frame matrix.</li>
+                                <li><code>cv2.waitKey(1)</code> maintains frame rate and polls keyboard events.</li>
+                                <li>Always release video capture object to avoid device locking.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card glass code-card">
+                            <div class="code-header">
+                                <span>webcam_loop.py</span>
+                                <span class="tag">Real-Time</span>
+                            </div>
+                            <pre><code>cap = cv2.VideoCapture(<span class="code-number">0</span>)
+
+<span class="code-keyword">while</span> <span class="code-keyword">True</span>:
+    ret, frame = cap.read()
+    <span class="code-keyword">if not</span> ret:
+        <span class="code-keyword">break</span>
+    
+    <span class="code-comment"># Flip frame horizontally for mirror effect</span>
+    frame = cv2.flip(frame, <span class="code-number">1</span>)
+    
+    <span class="code-comment"># Process frame...</span>
+    cv2.imshow(<span class="code-string">"Live Camera"</span>, frame)
+    
+    <span class="code-comment"># Break loop on ESC key (27)</span>
+    <span class="code-keyword">if</span> cv2.waitKey(<span class="code-number">1</span>) == <span class="code-number">27</span>:
+        <span class="code-keyword">break</span>
+
+cap.release()
+cv2.destroyAllWindows()</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 7 -->
+                <section class="slide-card" id="slide-7">
+                    <div class="slide-badge">SLIDE 07</div>
+                    <h1 class="slide-title">Feature & Object Detection</h1>
+                    <p class="slide-subtitle">From classical Haar Cascades to modern deep learning detection networks.</p>
+
+                    <div class="grid grid-2 mt-4">
+                        <div class="card glass">
+                            <h3><span class="highlight-cyan">Classical Detection vs Deep Learning</span></h3>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>Haar Cascades</th>
+                                        <th>DNN SSD / YOLO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Accuracy</strong></td>
+                                        <td>Moderate (High False Positives)</td>
+                                        <td>State-of-the-Art Precision</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Occlusion Handling</strong></td>
+                                        <td>Poor</td>
+                                        <td>Robust</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Speed</strong></td>
+                                        <td>Very Fast (CPU)</td>
+                                        <td>Real-Time (GPU / DNN CPU)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Model Size</strong></td>
+                                        <td>~900 KB</td>
+                                        <td>~5 MB - 50 MB</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card glass">
+                            <h3>Detection Visual Pipeline</h3>
+                            <div class="visual-box-container">
+                                <div class="face-target-sim">
+                                    <div class="sim-overlay-box">
+                                        <span class="sim-label">Face: 99.4%</span>
+                                    </div>
+                                    <div class="sim-grid-line"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 8 -->
+                <section class="slide-card" id="slide-8">
+                    <div class="slide-badge">SLIDE 08</div>
+                    <h1 class="slide-title">Deep Learning with OpenCV (cv2.dnn)</h1>
+                    <p class="slide-subtitle">Running high-speed neural network inference with lightweight dependencies.</p>
+
+                    <div class="grid grid-2 mt-4">
+                        <div class="card glass">
+                            <h3><span class="highlight-blue">OpenCV DNN Engine Advantages</span></h3>
+                            <ul class="feature-list">
+                                <li><strong>Zero Extra Heavy Dependencies:</strong> Run PyTorch, ONNX, or Caffe models without needing full PyTorch/TensorFlow installs.</li>
+                                <li><strong>Pre-processing via <code>blobFromImage</code>:</strong> Performs mean subtraction, scaling, and channel swapping in C++.</li>
+                                <li><strong>Optimized CPU/GPU Backends:</strong> OpenCL, CUDA, Vulkan, and Intel Inference Engine support.</li>
+                            </ul>
+
+                            <div class="info-callout mt-3">
+                                <strong>Blob Preprocessing Equation:</strong><br>
+                                <code>blob = (frame - Mean) * ScaleFactor</code>
+                            </div>
+                        </div>
+
+                        <div class="card glass code-card">
+                            <div class="code-header">
+                                <span>dnn_inference.py</span>
+                                <span class="tag">cv2.dnn</span>
+                            </div>
+                            <pre><code><span class="code-comment"># Load Caffe Prototxt & Weight File</span>
+net = cv2.dnn.readNetFromCaffe(
+    <span class="code-string">"deploy.prototxt"</span>, 
+    <span class="code-string">"res10_300x300_ssd_iter_140000_fp16.caffemodel"</span>
+)
+
+<span class="code-comment"># Create 4D Input Blob</span>
+blob = cv2.dnn.blobFromImage(
+    frame, 1.0, (<span class="code-number">300</span>, <span class="code-number">300</span>),
+    [<span class="code-number">104.0</span>, <span class="code-number">117.0</span>, <span class="code-number">123.0</span>],
+    swapRB=<span class="code-keyword">False</span>, crop=<span class="code-keyword">False</span>
+)
+
+net.setInput(blob)
+detections = net.forward()</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 9 -->
+                <section class="slide-card" id="slide-9">
+                    <div class="slide-badge">SLIDE 09</div>
+                    <h1 class="slide-title">Real-World Case Study: Real-Time Face Detection</h1>
+                    <p class="slide-subtitle">Interactive simulation of the project's SSD Caffe Deep Learning pipeline.</p>
+
+                    <div class="grid grid-2 mt-3">
+                        <div class="card glass">
+                            <h3>Interactive Detector Simulation</h3>
+                            <div class="demo-controls">
+                                <label for="confSlider">Confidence Threshold: <span id="confValue">70%</span></label>
+                                <input type="range" id="confSlider" min="10" max="95" value="70" class="slider">
+                                
+                                <div class="btn-group mt-2">
+                                    <button class="btn btn-sm btn-primary" id="simDetectBtn">⚡ Run Detection Simulation</button>
+                                    <button class="btn btn-sm btn-outline" id="simToggleBox">Toggle Bounding Box</button>
+                                </div>
+                            </div>
+
+                            <div class="canvas-preview-container mt-3">
+                                <canvas id="demoCanvas" width="500" height="300"></canvas>
+                                <div class="fps-overlay" id="fpsOverlay">Inference: 4.12 ms | FPS: 242</div>
+                            </div>
+                        </div>
+
+                        <div class="card glass code-card">
+                            <div class="code-header">
+                                <span>face_detection.py</span>
+                                <span class="tag">Active Project</span>
+                            </div>
+                            <pre><code><span class="code-keyword">for</span> i <span class="code-keyword">in</span> range(detections.shape[<span class="code-number">2</span>]):
+    confidence = detections[<span class="code-number">0</span>, <span class="code-number">0</span>, i, <span class="code-number">2</span>]
+    <span class="code-keyword">if</span> confidence > conf_threshold:
+        <span class="code-comment"># Extract normalized bounding box coords</span>
+        x1 = int(detections[<span class="code-number">0</span>, <span class="code-number">0</span>, i, <span class="code-number">3</span>] * frame_width)
+        y1 = int(detections[<span class="code-number">0</span>, <span class="code-number">0</span>, i, <span class="code-number">4</span>] * frame_height)
+        x2 = int(detections[<span class="code-number">0</span>, <span class="code-number">0</span>, i, <span class="code-number">5</span>] * frame_width)
+        y2 = int(detections[<span class="code-number">0</span>, <span class="code-number">0</span>, i, <span class="code-number">6</span>] * frame_height)
+
+        <span class="code-comment"># Draw green rectangle & confidence text</span>
+        cv2.rectangle(frame, (x1, y1), (x2, y2), (<span class="code-number">0</span>, <span class="code-number">255</span>, <span class="code-number">0</span>), <span class="code-number">2</span>)
+        cv2.putText(frame, f<span class="code-string">"Confidence: {confidence:.2f}"</span>, ...)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 10 -->
+                <section class="slide-card" id="slide-10">
+                    <div class="slide-badge">SLIDE 10</div>
+                    <h1 class="slide-title">Summary & Future Horizons</h1>
+                    <p class="slide-subtitle">Mastering OpenCV unlocks the doorway to cutting-edge Spatial AI.</p>
+
+                    <div class="grid grid-2 mt-4">
+                        <div class="card glass">
+                            <h3><span class="highlight-emerald">Key Takeaways</span></h3>
+                            <ul class="feature-list">
+                                <li><strong>Python + OpenCV</strong> combines developer speed with C++ engine performance.</li>
+                                <li><strong>NumPy array representation</strong> allows vectorizing complex image algorithms without explicit nested loops.</li>
+                                <li><strong>cv2.dnn Module</strong> enables seamless deployment of deep learning models on edge devices.</li>
+                                <li><strong>Real-time computer vision</strong> is the core driver of modern AI robotics, autonomous systems, and medical diagnostics.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card glass">
+                            <h3>Next Steps & Advanced Topics</h3>
+                            <div class="horizon-list">
+                                <div class="horizon-item">
+                                    <span class="horizon-icon">🔥</span>
+                                    <div>
+                                        <strong>PyTorch & TensorRT Integration</strong>
+                                        <p>Exporting models to ONNX and compiling with TensorRT for sub-millisecond GPU inference.</p>
+                                    </div>
+                                </div>
+                                <div class="horizon-item">
+                                    <span class="horizon-icon">🖐️</span>
+                                    <div>
+                                        <strong>MediaPipe 3D Landmark Estimation</strong>
+                                        <p>Real-time 3D hand, face mesh, and pose keypoint tracking.</p>
+                                    </div>
+                                </div>
+                                <div class="horizon-item">
+                                    <span class="horizon-icon">🌐</span>
+                                    <div>
+                                        <strong>WebAssembly (OpenCV.js)</strong>
+                                        <p>Running OpenCV algorithms natively inside web browsers and mobile clients.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Speaker Notes Drawer -->
+            <div class="speaker-notes-drawer" id="notesDrawer">
+                <div class="notes-header">
+                    <span>📝 Speaker Notes - Slide <span id="notesSlideNum">1</span></span>
+                    <button class="close-notes" id="closeNotesBtn">✕</button>
+                </div>
+                <div class="notes-content" id="notesContent">
+                    Welcome everyone to the Python & OpenCV Master Slide Deck. Highlight how Python's clean syntax coupled with OpenCV's optimized C++ core provides the perfect platform for building high-performance computer vision applications.
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
