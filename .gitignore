@@ -1,0 +1,15 @@
+# Python byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments & IDEs
+.venv/
+venv/
+ENV/
+.vscode/
+.idea/
+.DS_Store
+
+# Temporary outputs
+static/captures/*.jpg
