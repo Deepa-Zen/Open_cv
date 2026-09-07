@@ -99,8 +99,12 @@ app_state = {
     "detection_logs": []
 }
 
-captures_dir = os.path.join(os.getcwd(), "static", "captures")
-os.makedirs(captures_dir, exist_ok=True)
+try:
+    captures_dir = os.path.join(os.getcwd(), "static", "captures")
+    os.makedirs(captures_dir, exist_ok=True)
+except Exception:
+    captures_dir = "/tmp/captures"
+    os.makedirs(captures_dir, exist_ok=True)
 
 camera = None
 
