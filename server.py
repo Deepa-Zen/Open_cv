@@ -66,21 +66,28 @@ try:
 except Exception as e:
     print(f"[INFO] Running in High-Speed AI Engine Mode: {e}")
 
-# Load Eye Cascade
-eye_cascade_path = cv2.data.haarcascades + 'haarcascade_eye.xml'
-eye_cascade = cv2.CascadeClassifier(eye_cascade_path)
+# Load Eye Cascade safely
+eye_cascade = None
+try:
+    if hasattr(cv2, 'data') and hasattr(cv2.data, 'haarcascades') and cv2.data.haarcascades:
+        eye_cascade_path = os.path.join(cv2.data.haarcascades, 'haarcascade_eye.xml')
+        if os.path.exists(eye_cascade_path):
+            eye_cascade = cv2.CascadeClassifier(eye_cascade_path)
+except Exception:
+    pass
 
-# Initialize Caffe SSD Face Model
-model_proto = os.path.join("opencv-face-detection-main", "deploy.prototxt")
-model_weights = os.path.join("opencv-face-detection-main", "res10_300x300_ssd_iter_140000_fp16.caffemodel")
-
-if not os.path.exists(model_proto):
-    model_proto = "deploy.prototxt"
-    model_weights = "res10_300x300_ssd_iter_140000_fp16.caffemodel"
-
+# Initialize Caffe SSD Face Model safely
 caffe_net = None
-if os.path.exists(model_proto) and os.path.exists(model_weights):
-    caffe_net = cv2.dnn.readNetFromCaffe(model_proto, model_weights)
+try:
+    model_proto = os.path.join("opencv-face-detection-main", "deploy.prototxt")
+    model_weights = os.path.join("opencv-face-detection-main", "res10_300x300_ssd_iter_140000_fp16.caffemodel")
+    if not os.path.exists(model_proto):
+        model_proto = "deploy.prototxt"
+        model_weights = "res10_300x300_ssd_iter_140000_fp16.caffemodel"
+    if os.path.exists(model_proto) and os.path.exists(model_weights):
+        caffe_net = cv2.dnn.readNetFromCaffe(model_proto, model_weights)
+except Exception:
+    pass
 
 # Global state & buffers for advanced biometrics (rPPG Heart Rate & Drowsiness)
 green_signal_buffer = []
@@ -220,7 +227,12 @@ def analyze_facial_biometrics(frame, face_box):
             pose = "Facing Straight 👤"
 
         gray_face = cv2.cvtColor(face_crop, cv2.COLOR_BGR2GRAY)
-        eyes = eye_cascade.detectMultiScale(gray_face, 1.1, 4)
+        eyes = []
+        if eye_cascade is not None and not eye_cascade.empty():
+            try:
+                eyes = eye_cascade.detectMultiScale(gray_face, 1.1, 4)
+            except Exception:
+                eyes = []
 
         if len(eyes) >= 2:
             eyes_sorted = sorted(eyes, key=lambda e: e[0])
